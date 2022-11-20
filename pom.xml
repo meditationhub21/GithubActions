@@ -10,12 +10,34 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>GithubActionsDemo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>GithubActionsDemo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
+	<scm>
+		<connection>scm:git:git@github.com:meditationhub21/GithubActions.git</connection>
+		<developerConnection>scm:git:git@github.com:meditationhub21/GithubActions.git</developerConnection>
+		<url>scm:git:git@github.com:meditationhub21/GithubActions.git</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<repositories>
+		<repository>
+			<id>maven-central</id>
+			<name>maven-central</name>
+			<url>http://20.198.3.34:8081/repository/maven-central/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -77,17 +99,25 @@
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>testcontainers</artifactId>
-			<version>1.17.4</version>
+			<version>1.17.5</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>1.17.4</version>
+			<version>1.17.5</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>maven-snapshots</id>
+			<name>maven-snapshots</name>
+			<url>http://20.198.3.34:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<build>
 		<plugins>
