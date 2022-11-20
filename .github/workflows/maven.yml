@@ -22,9 +22,17 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+        
+    - name: Generate settings.xml for Maven Builds
+      uses: whelk-io/maven-settings-xml-action@v21
+      with:
+        servers: '[{ "id": "maven-central", "username": "${{ secrets.NEXUS_USERNAME }}", "password": "${{ secrets.NEXUS_PWD }}"}, { "id": "maven-public", "username": "${{ secrets.NEXUS_USERNAME }}", "password": "${{ secrets.NEXUS_PWD }}"}, { "id": "maven-snapshots", "username": "${{ secrets.NEXUS_USERNAME }}", "password": "${{ secrets.NEXUS_PWD }}"}]'
+ 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-
+    - name: Deploy Artifact to Nexus
+      run: mvn deploy -DskipTests --file pom.xml
+      
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v1
       with:
