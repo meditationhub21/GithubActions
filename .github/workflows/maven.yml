@@ -27,6 +27,7 @@ jobs:
       uses: whelk-io/maven-settings-xml-action@v21
       with:
         servers: '[{ "id": "maven-central", "username": "${{ secrets.NEXUS_USERNAME }}", "password": "${{ secrets.NEXUS_PWD }}"}, { "id": "maven-public", "username": "${{ secrets.NEXUS_USERNAME }}", "password": "${{ secrets.NEXUS_PWD }}"}, { "id": "maven-snapshots", "username": "${{ secrets.NEXUS_USERNAME }}", "password": "${{ secrets.NEXUS_PWD }}"}]'
+        mirrors: '[{"id": "maven-central", "name": "maven-central", "mirrorOf": "*", "url": "http://20.198.3.34:8081/repository/maven-central/"}]'
  
     - name: Build with Maven
       run: mvn -B package --file pom.xml
