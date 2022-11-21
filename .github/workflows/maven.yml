@@ -28,6 +28,7 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+        overwrite-settings: false
         cache: maven
  
     - name: Build with Maven
